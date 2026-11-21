@@ -10,7 +10,7 @@ export const GUARD_RADIUS = 14;
 const CHASE_SPEED_MULT = 1.65;
 const LOSE_SIGHT_AFTER = 2.5;
 const SEARCH_SECONDS = 3.0;
-const FILL_BASE = 52; // suspicion per second at point blank, standing in light
+const FILL_BASE = 85; // suspicion per second at point blank, standing in light
 const DRAIN_RATE = 20; // suspicion per second while unseen
 
 export class Guard {
@@ -72,7 +72,7 @@ export class Guard {
       this.lastSeen = { x: player.x, y: player.y };
       this.loseSightTimer = 0;
       // Fill faster up close, in the light, and when the player runs.
-      const closeness = 1 - (seen.dist / this.range) * 0.6;
+      const closeness = 1 - (seen.dist / this.range) * 0.45;
       const shadow = playerInShadow(world, player) ? 0.35 : 1;
       const sneak = player.sneaking ? 0.5 : 1;
       const speed = player.moving ? (player.sneaking ? 0.9 : 1.2) : 0.8;
